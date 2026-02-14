@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happy Valentine's Day ❤️</title>
+
+<style>
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#ff9eb5,#ffc1cc);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+text-align:center;
+color:#fff;
+}
+
+.section{
+display:none;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+height:100vh;
+width:100%;
+position:absolute;
+padding:20px;
+text-align:center;
+}
+
+.active{display:flex;}
+
+button{
+padding:18px 40px;
+margin:10px;
+border:none;
+border-radius:40px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+transition:0.3s;
+font-size:26px;
+}
+
+button:hover{
+background:#ff1e4d;
+}
+
+input{
+padding:14px;
+border-radius:20px;
+border:none;
+margin-top:10px;
+font-size:22px;
+}
+
+.gif{
+width:220px;
+margin-top:15px;
+border-radius:15px;
+}
+
+.roast{
+margin-top:20px;
+font-weight:bold;
+font-size:28px;
+}
+
+#slideshow img{
+width:100%;
+height:100vh;
+object-fit:contain;
+border-radius:0;
+box-shadow:none;
+background:black;
+}
+
+.heart{
+position:fixed;
+color:#fff;
+animation:floatUp 4s linear infinite;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+.fire{
+position:fixed;
+width:6px;
+height:6px;
+border-radius:50%;
+animation:explode 1s ease-out forwards;
+}
+
+@keyframes explode{
+0%{transform:scale(1);}
+100%{transform:scale(8);opacity:0;}
+}
+
+.final-text{
+max-width:90%;
+line-height:1.6;
+white-space:pre-line;
+font-size:34px;
+}
+
+/* 🔥 GLOBAL HERO SIZE */
+
+h1{
+font-size:80px;
+font-weight:900;
+}
+
+h2{
+font-size:50px;
+font-weight:800;
+margin:25px 0;
+}
+
+p{
+font-size:28px;
+}
+
+/* 📱 MOBILE RESPONSIVE */
+
+@media (max-width:600px){
+
+h1{
+font-size:52px;
+}
+
+h2{
+font-size:34px;
+}
+
+p{
+font-size:20px;
+}
+
+button{
+font-size:20px;
+}
+
+.roast{
+font-size:22px;
+}
+
+.final-text{
+font-size:22px;
+}
+
+input{
+font-size:18px;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro" class="section active">
+<h1>Rahul 😌</h1>
+<h2>Will you be my Valentine?</h2>
+<img src="askk.gif" class="gif">
+<button onclick="startVibe()">YES</button>
+<button id="noBtn" onclick="introNo()" onmouseover="moveNo()">NO</button>
+<p id="noRoast" class="roast"></p>
+</div>
+
+<!-- VIBE -->
+<div id="vibe" class="section">
+<h2>Hold on ✋</h2>
+<p>Before that… vibe check 😏</p>
+<img src="letsgo.gif" class="gif">
+<button onclick="go('q1')">Okay, let’s go</button>
+</div>
+
+<!-- QUESTIONS -->
+<div id="q1" class="section">
+<h2>Q1: Who's smarter?</h2>
+<button onclick="check(1,false)">Rahul</button>
+<button onclick="check(1,true)">Priya</button>
+<div id="r1"></div>
+</div>
+
+<div id="q2" class="section">
+<h2>Q2: When was Priya ever wrong?</h2>
+<button onclick="check(2,true)">Never</button>
+<button onclick="check(2,false)">Sometimes</button>
+<div id="r2"></div>
+</div>
+
+<div id="q3" class="section">
+<h2>Q3: Who is more dramatic?</h2>
+<button onclick="check(3,true)">Rahul</button>
+<button onclick="check(3,false)">Priya</button>
+<div id="r3"></div>
+</div>
+
+<div id="q4" class="section">
+<h2>Q4: Why did you ask Priya if we can marry?</h2>
+<input id="dateInput" placeholder="DD/MM/YYYY">
+<button onclick="checkDate()">Submit</button>
+<div id="r4"></div>
+</div>
+
+<div id="q5" class="section">
+<h2>Q5: Ready Valentine?</h2>
+<button onclick="check(5,true)">Obviously Yes</button>
+<button onclick="check(5,false)">Yes</button>
+<div id="r5"></div>
+</div>
+
+<!-- SLIDESHOW -->
+<div id="slideshow" class="section">
+<img id="slideImg" src="1.jpg">
+</div>
+
+<!-- FINAL MESSAGE -->
+<div id="final" class="section">
+<div class="final-text">
+Hey Rahul,
+
+I choose you.
+And I love choosing you.
+
+I hope we keep choosing each other — every single day, in every season of life.
+
+Thank you for being you.
+Behind all the jokes and the roasts,
+this was my little dramatic way of showing you
+how much you truly mean to me.
+
+You survived the vibe check.
+You passed every question.
+You handled the roasts like a champ.
+
+Which means…
+
+you’re officially stuck with me now 😌❤️
+
+No returns.
+No refunds.
+Lifetime subscription only.
+
+Soo, Will you be my Valentine?
+Today, tomorrow, and every day after. 💕
+
+— Wifey 💍
+</div>
+</div>
+
+<audio id="music" src="valentine.mp3"></audio>
+
+<script>
+function go(id){
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+function startVibe(){
+go('vibe');
+document.getElementById("music").play();
+}
+
+function moveNo(){
+let btn=document.getElementById("noBtn");
+btn.style.position="absolute";
+btn.style.left=Math.random()*80+"%";
+btn.style.top=Math.random()*80+"%";
+}
+
+function introNo(){
+let roasts=[
+"Nice try 😏",
+"Bold of you to choose NO",
+"Wrong answer, sir",
+"Deadpool disapproves",
+"Try again 😌"
+];
+let roast=roasts[Math.floor(Math.random()*roasts.length)];
+document.getElementById("noRoast").innerText=roast;
+}
+
+let correctRoasts={
+1:"Correct 😌",
+2:"Exactly. Never wrong.",
+3:"Drama king confirmed 👑",
+4:"Gotta be good with dates, Mandatory valentine quality😎",
+5:"Correct answer. No escape ❤️"
+};
+
+let wrongRoasts={
+1:["Wrong genius 😏","Think harder.","Absolutely not💀.","That was embarrassing.","Still wrong."],
+2:["Memory weak? 🤔","Focus.","Absolutely not 💀.","Try again.","Still wrong."],
+3:["Wrong human.","That was embarrassing.","Absolutely not 💀.","Incorrect.","Think again."],
+4:["Wrong date 😒","Memory failed.","That was embarrassing.","Not that day.","Focus lover."],
+5:["No escape 😈","Forever means forever.","Retry.","Wrong partner.","Denied."]
+};
+
+function check(q,correct){
+let r=document.getElementById("r"+q);
+if(correct){
+r.innerHTML="<img src='correct1.gif' class='gif'><p class='roast'>"+correctRoasts[q]+"</p>";
+setTimeout(()=>next(q),2000);
+}else{
+let roast=wrongRoasts[q][Math.floor(Math.random()*5)];
+r.innerHTML="<img src='wrong1.gif' class='gif'><p class='roast'>"+roast+"</p>";
+}
+}
+
+function checkDate(){
+let val=document.getElementById("dateInput").value.trim();
+if(val==="25/05/2024"){
+document.getElementById("r4").innerHTML="<img src='correct1.gif' class='gif'><p class='roast'>Memory unlocked 💘</p>";
+setTimeout(()=>next(4),2000);
+}else{
+let roast=wrongRoasts[4][Math.floor(Math.random()*5)];
+document.getElementById("r4").innerHTML="<img src='wrong1.gif' class='gif'><p class='roast'>"+roast+"</p>";
+}
+}
+
+function next(q){
+if(q==5){startSlideshow();}
+else go("q"+(q+1));
+}
+
+function startSlideshow(){
+go("slideshow");
+let photos=[];
+for(let i=1;i<=15;i++){photos.push(i+".jpg");}
+let i=0;
+let slider=setInterval(()=>{
+i=(i+1)%photos.length;
+document.getElementById("slideImg").src=photos[i];
+},3000);
+
+setTimeout(()=>{
+clearInterval(slider);
+showFinal();
+},45000);
+}
+
+function showFinal(){
+go("final");
+celebrate();
+}
+
+function celebrate(){
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),4000);
+},300);
+
+for(let i=0;i<40;i++){
+let f=document.createElement("div");
+f.className="fire";
+f.style.left=Math.random()*100+"vw";
+f.style.top=Math.random()*100+"vh";
+f.style.background=`hsl(${Math.random()*360},100%,50%)`;
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1000);
+}
+}
+</script>
+
+</body>
+</html>
